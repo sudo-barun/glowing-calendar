@@ -1,0 +1,82 @@
+body
+{
+	font-family: system-ui;
+}
+
+.grid
+{
+	--center-x: 0;
+	--center-y: 0;
+
+	margin-inline: auto;
+	max-width: 1198px;
+	padding: 16px;
+
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	gap: 8px;
+}
+
+.cell
+{
+	aspect-ratio: 1;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	position: relative;
+
+	background-attachment: fixed;
+	background-color: var(--cell-background);
+
+	font-size: 32px;
+	user-select: none;
+}
+
+:root:not([data-theme]),
+:root[data-theme=""],
+:root[data-theme="light"]
+{
+	--cell-background: #F0F0F0;
+	--radial-gradient-color-stop-1: rgba(0, 0, 0, 0.075);
+	--radial-gradient-color-stop-2: rgba(255, 255, 255, 0);
+	--glow-color-stop-1: rgba(0, 0, 0, 0.25);
+	--glow-color-stop-2: rgba(255, 255, 255, 0);
+}
+
+:root[data-theme="dark"]
+{
+	--cell-background: #282828;
+	--radial-gradient-color-stop-1: rgba(255, 255, 255, 0.1);
+	--radial-gradient-color-stop-2: rgba(0, 0, 0, 0);
+	--glow-color-stop-1: rgba(255, 255, 255, 0.75);
+	--glow-color-stop-2: rgba(0, 0, 0, 0);
+}
+
+.cell:hover
+{
+	background-image: radial-gradient(
+		circle at var(--center-x) var(--center-y),
+		var(--radial-gradient-color-stop-1), var(--radial-gradient-color-stop-2) 164px
+	);
+}
+
+.cell::after
+{
+	--offset: 2px;
+	content: '';
+
+	position: absolute;
+	left: calc(-1 * var(--offset));
+	top: calc(-1 * var(--offset));
+	width: calc(100% + 2 * var(--offset));
+	height: calc(100% + 2 * var(--offset));
+	z-index: -1;
+
+	background-attachment: fixed;
+	background-image: radial-gradient(
+		circle at var(--center-x) var(--center-y),
+		var(--glow-color-stop-1), var(--glow-color-stop-2) 123px
+	);
+}
