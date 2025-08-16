@@ -1,5 +1,8 @@
 {
+	"name": "glowing-calendar",
+	"type": "module",
+	"private": true,
 	"dependencies": {
-		"@xylem-js/xylem-js": "0.1.1"
+		"@xylem-js/xylem-js": "0.7.2"
 	}
 }

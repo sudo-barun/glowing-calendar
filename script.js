@@ -1,8 +1,8 @@
-import Component from './node_modules/@xylem-js/xylem-js/js/dom/Component.js';
-import createStore from './node_modules/@xylem-js/xylem-js/js/core/createStore.js';
-import map from './node_modules/@xylem-js/xylem-js/js/core/map.js';
-import mountComponent from './node_modules/@xylem-js/xylem-js/js/dom/mountComponent.js';
-import parseHTML from './node_modules/@xylem-js/xylem-js/js/dom/parseHTML.js';
+import Component from './node_modules/@xylem-js/xylem-js/dom/Component.js';
+import createStore from './node_modules/@xylem-js/xylem-js/core/createStore.js';
+import map from './node_modules/@xylem-js/xylem-js/core/map.js';
+import mountComponent from './node_modules/@xylem-js/xylem-js/dom/mountComponent.js';
+import parseHTML from './node_modules/@xylem-js/xylem-js/dom/parseHTML.js';
 
 class Calendar extends Component
 {
@@ -14,7 +14,7 @@ class Calendar extends Component
 		const INITIAL_CENTER_X = `200%`;
 		const INITIAL_CENTER_Y = `200%`;
 
-		this.afterAttachToDom.subscribe(() => {
+		this.afterAttach.subscribe(() => {
 			document.body.addEventListener('mousemove', (ev) => {
 				centerX$._(`${ev.clientX}px`);
 				centerY$._(`${ev.clientY}px`);
@@ -67,7 +67,7 @@ class App extends Component
 				style: [
 					`position:fixed;bottom:0;right:0;padding:8px;user-select:none;`,
 					{
-						color: map(colorScheme$, v => v === 'dark' ? 'hsl(0, 100%, 100%, 0.1)' : 'hsl(0, 100%, 0%, 0.05'),
+						color: map(this, colorScheme$, v => v === 'dark' ? 'hsl(0, 100%, 100%, 0.1)' : 'hsl(0, 100%, 0%, 0.05'),
 					},
 				],
 			},
